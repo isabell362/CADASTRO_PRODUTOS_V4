@@ -4,101 +4,411 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema de estoque - POO - v4</title>
+
+    <title>Cadastro de Produtos - V5</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <div class="container">
+    <main class="container">
 
-        <div class="moldura-mar">
-            <img src="belle.jpg" alt="Minha foto" class="foto-mar">
-        </div>
+        <!-- CABEÇALHO -->
+        <header class="topo">
 
-        <h1>Cadastro de Produtos V4</h1>
+            <div class="titulo-area">
 
-        <form id="produto-form">
+                <span class="etiqueta">CONTROLE DE ESTOQUE</span>
 
-            <div class="form-group campo-nome-container">
-                <label for="nome">Nome do produto:</label>
+                <h1>Cadastro de Produtos <span>V5</span></h1>
 
-                <input
-                    type="text"
-                    id="nome"
-                    placeholder="Ex. Notebook"
-                    autocomplete="off"
-                    required
-                >
+                <p>Organize seus produtos de um jeito simples e prático.</p>
 
-                <!-- NOVO: SUGESTÕES DE PRODUTOS -->
-                <div id="sugestoes-produtos" class="sugestoes-produtos"></div>
             </div>
 
-            <div class="form-group">
-                <label for="preco">Preço (R$):</label>
-                <input
-                    type="number"
-                    id="preco"
-                    step="0.01"
-                    placeholder="Ex. 3500.00"
-                    required
-                >
+            <!-- FOTOS NO CANTO DIREITO -->
+            <div class="fotos-lado-a-lado">
+
+                <div class="moldura-mar">
+                    <img src="belle.jpg" alt="Foto de Belle" class="foto-mar">
+                </div>
+
+                <div class="moldura-mar">
+                    <img src="milena.jpg" alt="Foto de Milena" class="foto-mar">
+                </div>
+
             </div>
 
-            <div class="form-group">
-                <label for="quantidade">Quantidade:</label>
-                <input
-                    type="number"
-                    id="quantidade"
-                    placeholder="Ex. 5"
-                    required
-                >
-            </div>
+        </header>
 
-            <button type="submit" class="btn-primary">
-                Adicionar ao carrinho
+
+        <!-- BOTÃO BOOTSTRAP -->
+        <div class="barra-acoes">
+
+            <span class="status-projeto">
+                <span class="status-ponto"></span>
+                Sistema atualizado para V5
+            </span>
+
+            <button type="button" id="abrir-bootstrap" class="btn-bootstrap">
+                Conheça o conceito Bootstrap
             </button>
 
-        </form>
+        </div>
 
-        <div class="resumo-container">
-            <h3 id="total-estoque">Total em estoque R$ 0.00</h3>
 
-            <button id="limpar-tabela" class="btn-danger">
+        <!-- MENSAGENS INLINE -->
+        <div
+            id="mensagem-pagina"
+            class="mensagem-pagina"
+            role="status"
+            aria-live="polite"
+            hidden>
+        </div>
+
+
+        <!-- FORMULÁRIO -->
+        <section class="cartao">
+
+            <div class="titulo-secao">
+
+                <h2>Adicionar produto</h2>
+
+                <p>Preencha os campos para cadastrar ou atualizar um item.</p>
+
+            </div>
+
+
+            <form id="produto-form" novalidate>
+
+                <div class="form-grid">
+
+                    <div class="form-group campo-nome-container">
+
+                        <label for="nome">Nome do produto</label>
+
+                        <input
+                            type="text"
+                            id="nome"
+                            placeholder="Ex.: Notebook"
+                            autocomplete="off"
+                        >
+
+                        <div
+                            id="sugestoes-produtos"
+                            class="sugestoes-produtos">
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="preco">Preço (R$)</label>
+
+                        <input
+                            type="number"
+                            id="preco"
+                            min="0.01"
+                            step="0.01"
+                            placeholder="Ex.: 3500,00"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="quantidade">Quantidade</label>
+
+                        <input
+                            type="number"
+                            id="quantidade"
+                            min="1"
+                            step="1"
+                            placeholder="Ex.: 5"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-botoes">
+
+                    <button type="submit" class="btn-primary">
+                        Adicionar produto
+                    </button>
+
+                    <button
+                        type="button"
+                        id="cancelar-edicao"
+                        class="btn-secundario"
+                        hidden>
+                        Cancelar edição
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+
+        <!-- RESUMO DO ESTOQUE -->
+        <section class="resumo-container">
+
+            <div class="resumo-texto">
+
+                <span class="resumo-legenda">
+                    VALOR TOTAL EM ESTOQUE
+                </span>
+
+                <h2 id="total-estoque">R$ 0,00</h2>
+
+            </div>
+
+            <button
+                type="button"
+                id="limpar-tabela"
+                class="btn-danger">
+
                 Limpar tudo
+
             </button>
-        </div>
 
-        <div class="form-group busca-container">
-            <label for="campo-busca">Pesquisar produto:</label>
+        </section>
 
-            <input
-                type="text"
-                id="campo-busca"
-                placeholder="Digite o nome do produto..."
-            >
-        </div>
 
-        <table id="tabela-produtos">
+        <!-- TABELA DE PRODUTOS -->
+        <section class="cartao tabela-cartao">
 
-            <thead>
-                <tr>
-                    <th>Nome</th>
-                    <th>Preço-un</th>
-                    <th>Quant.</th>
-                    <th>Sub-total</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
+            <div class="cabecalho-tabela">
 
-            <tbody>
-                <!-- As linhas da tabela vão ser inseridas pelo JS -->
-            </tbody>
+                <div>
 
-        </table>
+                    <h2>Produtos cadastrados</h2>
+
+                    <p>Pesquise, edite ou remova produtos do estoque.</p>
+
+                </div>
+
+
+                <div class="busca-container">
+
+                    <label
+                        class="visualmente-oculto"
+                        for="campo-busca">
+
+                        Pesquisar produto
+
+                    </label>
+
+                    <input
+                        type="search"
+                        id="campo-busca"
+                        placeholder="Pesquisar produto..."
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="tabela-responsiva">
+
+                <table id="tabela-produtos">
+
+                    <thead>
+
+                        <tr>
+                            <th>Nome</th>
+                            <th>Preço-un</th>
+                            <th>Quant.</th>
+                            <th>Sub-total</th>
+                            <th>Ações</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- RODAPÉ -->
+        <footer class="rodape">
+
+            <span>Feito com cuidado • Sistema de Estoque V5</span>
+
+            <span>Interface com inspiração praiana 🌊</span>
+
+        </footer>
+
+    </main>
+
+
+
+    <!-- ================================= -->
+    <!-- MODAL DE CONFIRMAÇÃO -->
+    <!-- ================================= -->
+
+    <div
+        class="modal-overlay"
+        id="modal-confirmacao"
+        aria-hidden="true">
+
+        <section
+            class="modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="titulo-modal-confirmacao">
+
+            <div class="modal-icone">
+                !
+            </div>
+
+            <h2 id="titulo-modal-confirmacao">
+                Confirmar ação
+            </h2>
+
+            <p id="texto-modal-confirmacao">
+                Tem certeza de que deseja continuar?
+            </p>
+
+            <div class="modal-botoes">
+
+                <button
+                    type="button"
+                    id="cancelar-confirmacao"
+                    class="btn-secundario">
+
+                    Cancelar
+
+                </button>
+
+                <button
+                    type="button"
+                    id="confirmar-acao"
+                    class="btn-danger">
+
+                    Confirmar
+
+                </button>
+
+            </div>
+
+        </section>
 
     </div>
+
+
+
+    <!-- ================================= -->
+    <!-- MODAL CONCEITO BOOTSTRAP -->
+    <!-- ================================= -->
+
+    <div
+        class="modal-overlay"
+        id="modal-bootstrap"
+        aria-hidden="true">
+
+        <section
+            class="modal modal-bootstrap"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="titulo-modal-bootstrap">
+
+            <button
+                type="button"
+                class="fechar-modal"
+                id="fechar-bootstrap"
+                aria-label="Fechar">
+
+                ×
+
+            </button>
+
+
+            <div class="modal-icone bootstrap-icone">
+                B
+            </div>
+
+
+            <h2 id="titulo-modal-bootstrap">
+                O conceito Bootstrap
+            </h2>
+
+
+            <p>
+                Bootstrap é uma biblioteca de front-end que oferece
+                componentes e estilos prontos para acelerar a criação
+                de interfaces responsivas.
+            </p>
+
+
+            <div class="bootstrap-lista">
+
+                <div>
+                    <strong>Botões</strong>
+                    <span>Estilos padronizados e estados de interação.</span>
+                </div>
+
+                <div>
+                    <strong>Cards</strong>
+                    <span>Blocos organizados para agrupar informações.</span>
+                </div>
+
+                <div>
+                    <strong>Formulários</strong>
+                    <span>Campos com aparência consistente.</span>
+                </div>
+
+                <div>
+                    <strong>Modais</strong>
+                    <span>Janelas para avisos e confirmações.</span>
+                </div>
+
+            </div>
+
+
+            <p class="nota-bootstrap">
+
+                Neste projeto, o conceito foi aplicado com componentes
+                personalizados em HTML, CSS e JavaScript, mantendo
+                a identidade visual praiana.
+
+                Em uma versão com a biblioteca Bootstrap, esses
+                elementos também poderiam ser montados com suas
+                classes e componentes prontos.
+
+            </p>
+
+
+            <div class="modal-botoes">
+
+                <button
+                    type="button"
+                    id="entendi-bootstrap"
+                    class="btn-primary">
+
+                    Entendi
+
+                </button>
+
+            </div>
+
+        </section>
+
+    </div>
+
 
     <script src="script.js"></script>
 

@@ -1,6 +1,6 @@
-/* ========================= */
-/* CONFIGURAÇÃO GERAL */
-/* ========================= */
+/* =========================
+   CONFIGURAÇÃO GERAL
+========================= */
 
 * {
     box-sizing: border-box;
@@ -8,71 +8,151 @@
     padding: 0;
 }
 
-
-/* ========================= */
-/* FUNDO DO SITE */
-/* ========================= */
+:root {
+    --azul-escuro: #164e63;
+    --azul: #176b87;
+    --turquesa: #27aaa8;
+    --turquesa-claro: #dff8f5;
+    --borda: #b8e8e4;
+    --coral: #df7180;
+    --texto-suave: #638b96;
+    --branco: #ffffff;
+}
 
 html,
 body {
     min-height: 100%;
 }
 
+
+/* =========================
+   FUNDO DO SITE
+========================= */
+
 body {
     font-family: Arial, sans-serif;
 
-    color: #164e63;
+    color: var(--azul-escuro);
 
-    padding: 20px;
+    padding: 28px 18px;
 
-    /* FUNDO DO OCEANO */
-    background-image:
+    background:
         linear-gradient(
-            rgba(20, 100, 120, 0.30),
-            rgba(20, 120, 140, 0.30)
+            rgba(15, 92, 112, 0.22),
+            rgba(15, 92, 112, 0.28)
         ),
-        url("plano de fundo.jpg");
+        url("fundo-praia.jpg");
 
-    background-size: cover;
     background-position: center;
-    background-repeat: no-repeat;
+    background-size: cover;
     background-attachment: fixed;
+    background-repeat: no-repeat;
 }
 
 
-/* ========================= */
-/* CONTAINER PRINCIPAL */
-/* ========================= */
+/* =========================
+   CONTAINER PRINCIPAL
+========================= */
 
 .container {
-    max-width: 650px;
+    width: min(100%, 1050px);
 
-    margin: 30px auto;
-    padding: 25px;
+    margin: 12px auto;
 
-    /* Efeito de pérola */
-    background-color: rgba(255, 255, 255, 0.94);
+    padding: 30px;
 
-    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.95);
 
-    border: 2px solid #d5f5f2;
+    border: 1px solid rgba(213, 245, 242, 0.95);
+
+    border-radius: 24px;
 
     box-shadow:
-        0 8px 25px rgba(20, 80, 100, 0.30);
+        0 15px 45px rgba(16, 75, 91, 0.25);
 }
 
 
-/* ========================= */
-/* FOTO QUADRADA - ESTILO MAR */
-/* ========================= */
+/* =========================
+   CABEÇALHO
+========================= */
+
+.topo {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 24px;
+
+    padding-bottom: 22px;
+
+    border-bottom: 1px solid #d9efed;
+}
+
+.titulo-area {
+    flex: 1;
+}
+
+.etiqueta,
+.resumo-legenda {
+    display: inline-block;
+
+    color: #258d91;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+}
+
+h1 {
+    margin: 8px 0;
+
+    color: var(--azul);
+
+    font-size: clamp(25px, 4vw, 34px);
+}
+
+h1 span {
+    color: var(--turquesa);
+}
+
+.titulo-area p,
+.titulo-secao p,
+.cabecalho-tabela p {
+    color: var(--texto-suave);
+
+    font-size: 14px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================
+   FOTOS LADO A LADO
+========================= */
+
+.fotos-lado-a-lado {
+    display: flex;
+
+    justify-content: flex-end;
+
+    align-items: center;
+
+    gap: 12px;
+
+    flex-shrink: 0;
+}
 
 .moldura-mar {
-    width: 190px;
-    height: 190px;
+    width: 112px;
+    height: 112px;
 
-    margin: 5px auto 25px;
+    padding: 5px;
 
-    padding: 7px;
+    border-radius: 17px;
 
     background: linear-gradient(
         135deg,
@@ -82,61 +162,156 @@ body {
         #d9f8f3
     );
 
-    border-radius: 18px;
-
     box-shadow:
-        0 0 0 3px #ffffff,
-        0 5px 18px rgba(25, 130, 150, 0.35);
+        0 4px 13px rgba(25, 130, 150, 0.22);
 
-    position: relative;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    overflow: hidden;
 }
 
-.moldura-mar .foto-mar {
+.foto-mar {
+    display: block;
+
     width: 100%;
     height: 100%;
 
-    display: block;
-
     object-fit: cover;
+
+    object-position: center 25%;
+
+    border: 2px solid white;
+
+    border-radius: 13px;
+}
+
+
+/* =========================
+   BARRA DE AÇÕES
+========================= */
+
+.barra-acoes {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 14px;
+
+    padding: 16px 0 20px;
+}
+
+.status-projeto {
+    color: #54818b;
+
+    font-size: 13px;
+}
+
+.status-ponto {
+    display: inline-block;
+
+    width: 8px;
+    height: 8px;
+
+    margin-right: 6px;
+
+    border-radius: 50%;
+
+    background: #35b69c;
+}
+
+
+/* =========================
+   BOTÕES GERAIS
+========================= */
+
+button {
+    border: 0;
 
     border-radius: 10px;
 
-    border: 3px solid #ffffff;
+    padding: 11px 16px;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+button:hover {
+    transform: translateY(-1px);
+}
+
+button:focus-visible,
+input:focus-visible {
+    outline: 3px solid rgba(39, 170, 168, 0.3);
+
+    outline-offset: 2px;
 }
 
 
-/* ========================= */
-/* TÍTULO */
-/* ========================= */
+/* =========================
+   BOTÃO BOOTSTRAP
+========================= */
 
-h1 {
-    text-align: center;
+.btn-bootstrap {
+    color: #176b87;
+
+    background: #e5f7f5;
+
+    border: 1px solid #b8e8e4;
+}
+
+.btn-bootstrap:hover {
+    background: #d3f1ed;
+}
+
+
+/* =========================
+   CARDS
+========================= */
+
+.cartao {
+    padding: 23px;
 
     margin-bottom: 20px;
 
-    color: #176b87;
+    background: #ffffff;
 
-    text-shadow:
-        1px 1px 3px #c8f7f4;
+    border: 1px solid #d9efed;
+
+    border-radius: 17px;
+
+    box-shadow:
+        0 4px 15px rgba(28, 112, 126, 0.06);
+}
+
+.titulo-secao h2,
+.cabecalho-tabela h2 {
+    color: var(--azul);
+
+    font-size: 20px;
+
+    margin-bottom: 5px;
+}
+
+.titulo-secao {
+    margin-bottom: 20px;
 }
 
 
-/* ========================= */
-/* FORMULÁRIO */
-/* ========================= */
+/* =========================
+   FORMULÁRIO
+========================= */
 
-form {
-    display: flex;
+.form-grid {
+    display: grid;
 
-    flex-direction: column;
+    grid-template-columns: 1.5fr 1fr 1fr;
 
     gap: 15px;
-
-    margin-bottom: 25px;
 }
 
 .form-group {
@@ -144,87 +319,72 @@ form {
 
     flex-direction: column;
 
-    gap: 5px;
+    gap: 7px;
+
+    min-width: 0;
 }
 
-
-/* ========================= */
-/* LABEL */
-/* ========================= */
-
 label {
-    font-weight: bold;
+    color: #246477;
+
+    font-size: 13px;
+
+    font-weight: 700;
+}
+
+input {
+    width: 100%;
+
+    min-width: 0;
+
+    padding: 12px 13px;
+
+    color: var(--azul-escuro);
+
+    background: #f7ffff;
+
+    border: 1.5px solid #b8e8e4;
+
+    border-radius: 10px;
 
     font-size: 14px;
 
-    color: #246477;
-}
-
-
-/* ========================= */
-/* INPUTS */
-/* ========================= */
-
-input {
-    padding: 11px;
-
-    border: 2px solid #a8e9e5;
-
-    border-radius: 8px;
-
-    font-size: 16px;
-
-    background-color: #f7ffff;
-
-    color: #164e63;
+    transition: 0.2s;
 }
 
 input:focus {
     outline: none;
 
-    border-color: #50c9c3;
+    border-color: #45bcb6;
 
     box-shadow:
-        0 0 8px rgba(80, 201, 195, 0.25);
+        0 0 0 3px rgba(80, 201, 195, 0.15);
 }
 
 
-/* ========================= */
-/* BOTÕES */
-/* ========================= */
+/* =========================
+   BOTÕES DO FORMULÁRIO
+========================= */
 
-button {
-    padding: 10px 15px;
+.form-botoes {
+    display: flex;
 
-    font-size: 15px;
+    gap: 10px;
 
-    font-weight: bold;
-
-    border: none;
-
-    border-radius: 8px;
-
-    cursor: pointer;
-
-    transition: 0.2s;
+    margin-top: 18px;
 }
-
-
-/* ========================= */
-/* ADICIONAR PRODUTO */
-/* ========================= */
 
 .btn-primary {
-    background: linear-gradient(
-        135deg,
-        #28b8b0,
-        #4fd1c5
-    );
-
     color: white;
 
+    background: linear-gradient(
+        135deg,
+        #22aaa5,
+        #50c9bd
+    );
+
     box-shadow:
-        0 3px 8px rgba(40, 184, 176, 0.30);
+        0 4px 10px rgba(40, 184, 176, 0.2);
 }
 
 .btn-primary:hover {
@@ -235,25 +395,79 @@ button {
     );
 }
 
+.btn-secundario {
+    color: #28758a;
 
-/* ========================= */
-/* LIMPAR TUDO */
-/* ========================= */
+    background: #eaf7f6;
+
+    border: 1px solid #c6e9e6;
+}
+
+.btn-secundario:hover {
+    background: #d9f1ee;
+}
 
 .btn-danger {
-    background-color: #e77c8b;
-
     color: white;
+
+    background: #df7180;
 }
 
 .btn-danger:hover {
-    background-color: #d85f70;
+    background: #ca5f70;
 }
 
 
-/* ========================= */
-/* RESUMO */
-/* ========================= */
+/* =========================
+   MENSAGENS INLINE V5
+========================= */
+
+.mensagem-pagina {
+    padding: 12px 15px;
+
+    margin-bottom: 18px;
+
+    border-radius: 10px;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    line-height: 1.45;
+}
+
+.mensagem-pagina.erro {
+    color: #a52d3d;
+
+    background: #fff0f1;
+
+    border: 1px solid #f2b9c0;
+}
+
+.mensagem-pagina.sucesso {
+    color: #176d58;
+
+    background: #eafaf3;
+
+    border: 1px solid #a9e4c9;
+}
+
+.mensagem-pagina.info {
+    color: #176b87;
+
+    background: #edf9fb;
+
+    border: 1px solid #b9e5ed;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+
+/* =========================
+   RESUMO DO ESTOQUE
+========================= */
 
 .resumo-container {
     display: flex;
@@ -262,34 +476,72 @@ button {
 
     align-items: center;
 
-    gap: 15px;
+    gap: 16px;
 
-    margin-bottom: 15px;
+    margin: 5px 0 20px;
 
-    padding-top: 12px;
+    padding: 18px 22px;
 
-    border-top: 2px solid #c7efec;
+    border: 1px solid #bfe9e5;
+
+    border-radius: 15px;
+
+    background: linear-gradient(
+        110deg,
+        #e9fbf8,
+        #f7ffff
+    );
 }
 
-#total-estoque {
-    font-size: 18px;
-
-    font-weight: bold;
+.resumo-texto h2 {
+    margin-top: 5px;
 
     color: #176b87;
+
+    font-size: 25px;
 }
 
 
-/* ========================= */
-/* TABELA */
-/* ========================= */
+/* =========================
+   TABELA
+========================= */
+
+.cabecalho-tabela {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 18px;
+
+    margin-bottom: 17px;
+}
+
+.busca-container {
+    width: min(100%, 280px);
+}
+
+.busca-container input {
+    background: #fbffff;
+}
+
+.tabela-cartao {
+    padding: 23px 20px;
+}
+
+.tabela-responsiva {
+    width: 100%;
+
+    overflow-x: auto;
+}
 
 table {
     width: 100%;
 
-    border-collapse: collapse;
+    min-width: 650px;
 
-    margin-top: 10px;
+    border-collapse: collapse;
 
     overflow: hidden;
 
@@ -298,179 +550,88 @@ table {
 
 th,
 td {
-    border: 1px solid #a9e3e0;
-
-    padding: 10px;
+    padding: 12px 10px;
 
     text-align: center;
+
+    border-bottom: 1px solid #d8efed;
+
+    font-size: 13px;
 }
 
-
-/* ========================= */
-/* CABEÇALHO DA TABELA */
-/* ========================= */
-
 th {
+    color: white;
+
     background: linear-gradient(
         135deg,
         #197c96,
         #329d9c
     );
 
-    color: white;
+    font-size: 12px;
+
+    letter-spacing: 0.3px;
 }
 
-
-/* ========================= */
-/* LINHAS DA TABELA */
-/* ========================= */
-
 tbody tr:nth-child(even) {
-    background-color: #effcfb;
+    background: #effcfb;
 }
 
 tbody tr:nth-child(odd) {
-    background-color: #ffffff;
+    background: white;
+}
+
+tbody tr:hover {
+    background: #e5f8f5;
 }
 
 
-/* ========================= */
-/* BOTÃO EXCLUIR PRODUTO */
-/* ========================= */
+/* =========================
+   BOTÕES DA TABELA
+========================= */
 
-.btn-remover {
-    background-color: #e77c8b;
+.btn-editar {
+    margin-right: 7px;
+
+    padding: 7px 10px;
 
     color: white;
 
-    padding: 5px 10px;
+    background: #55abc0;
+
+    font-size: 12px;
+}
+
+.btn-editar:hover {
+    background: #329bb8;
+}
+
+.btn-remover {
+    padding: 7px 10px;
+
+    color: white;
+
+    background: #e77c8b;
 
     font-size: 12px;
 }
 
 .btn-remover:hover {
-    background-color: #d85f70;
+    background: #d85f70;
 }
-
-
-/* ========================= */
-/* AJUSTE PARA CELULAR */
-/* ========================= */
-
-@media (max-width: 600px) {
-
-    .container {
-        padding: 18px;
-    }
-
-    .moldura-mar {
-        width: 150px;
-        height: 150px;
-    }
-
-    .resumo-container {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    table {
-        font-size: 13px;
-    }
-
-    th,
-    td {
-        padding: 7px;
-    }
-}
-
-
-/* Botão Editar — azul praiano */
-.btn-editar {
-    background-color: #64BBD0;
-    color: #FFFFFF;
-    border: none;
-    padding: 9px 16px;
-    border-radius: 10px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.btn-editar:hover {
-    background-color: #329BB8;
-}
-
-/* Dá espaço entre o resumo e a tabela */
-.resumo-container {
-    margin-bottom: 25px;
-}
-
-/* Separa a tabela do botão Limpar tudo */
-#tabela-produtos {
-    margin-top: 25px;
-}
-
-/* Mantém os botões de ação dentro da tabela */
-#tabela-produtos td:last-child {
-    white-space: nowrap;
-    text-align: center;
-}
-
-/* Espaço entre Editar e Remover */
-.btn-editar {
-    margin-right: 10px;
-}
-
-
-/* ========================= */
-/* PESQUISA DE PRODUTOS - V4 */
-/* ========================= */
-
-.busca-container {
-    margin-bottom: 15px;
-}
-
-#campo-busca {
-    width: 100%;
-
-    padding: 12px;
-
-    border: 2px solid #a8e9e5;
-
-    border-radius: 10px;
-
-    font-size: 15px;
-
-    background-color: #f7ffff;
-
-    color: #164e63;
-
-    transition: 0.2s;
-}
-
-#campo-busca:focus {
-    outline: none;
-
-    border-color: #329d9c;
-
-    box-shadow: 0 0 8px rgba(80, 201, 195, 0.35);
-}
-
-/* Mensagem quando nenhum produto for encontrado */
 
 .mensagem-vazia {
-    text-align: center;
+    padding: 24px;
 
-    padding: 18px;
+    color: #5795a5;
 
-    color: #e77c8b;
-
-    font-weight: bold;
+    font-weight: 700;
 }
 
-/* ========================= */
-/* SUGESTÕES DE PRODUTOS */
-/* ========================= */
+
+/* =========================
+   SUGESTÕES AUTOMÁTICAS
+========================= */
 
 .campo-nome-container {
     position: relative;
@@ -479,21 +640,28 @@ tbody tr:nth-child(odd) {
 .sugestoes-produtos {
     display: none;
 
+    position: absolute;
+
+    z-index: 20;
+
+    top: calc(100% + 4px);
+
+    left: 0;
+
     width: 100%;
 
-    background-color: #ffffff;
+    max-height: 220px;
 
-    border: 2px solid #a8e9e5;
+    overflow-y: auto;
+
+    background: white;
+
+    border: 1px solid #a8e9e5;
 
     border-radius: 10px;
 
-    margin-top: 3px;
-
-    overflow: hidden;
-
-    box-shadow: 0 5px 12px rgba(20, 80, 100, 0.15);
-
-    z-index: 10;
+    box-shadow:
+        0 8px 20px rgba(20, 80, 100, 0.15);
 }
 
 .sugestoes-produtos.ativa {
@@ -501,45 +669,398 @@ tbody tr:nth-child(odd) {
 }
 
 .sugestao-item {
-    padding: 12px;
+    padding: 11px 13px;
 
     cursor: pointer;
 
-    color: #164e63;
-
-    border-bottom: 1px solid #d5f5f2;
-
-    transition: 0.2s;
+    border-bottom: 1px solid #e0f2f0;
 }
 
 .sugestao-item:last-child {
-    border-bottom: none;
+    border-bottom: 0;
 }
 
 .sugestao-item:hover {
-    background-color: #e6fafa;
+    background: #e6fafa;
 }
 
 .sugestao-item strong {
+    display: block;
+
     color: #176b87;
+
+    font-size: 14px;
 }
 
 .sugestao-detalhes {
     display: block;
 
-    font-size: 12px;
+    margin-top: 4px;
 
     color: #5795a5;
 
-    margin-top: 4px;
+    font-size: 12px;
 }
 
-.mensagem-sugestao {
-    padding: 12px;
 
-    color: #5795a5;
+/* =========================
+   RODAPÉ
+========================= */
 
-    font-size: 13px;
+.rodape {
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 12px;
+
+    padding: 3px 3px 0;
+
+    color: #6b929b;
+
+    font-size: 12px;
+}
+
+
+/* =========================
+   MODAIS PERSONALIZADOS V5
+========================= */
+
+.modal-overlay {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 1000;
+
+    display: none;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 20px;
+
+    background: rgba(9, 43, 55, 0.58);
+
+    backdrop-filter: blur(4px);
+}
+
+.modal-overlay.ativa {
+    display: flex;
+
+    animation: aparecer 0.18s ease-out;
+}
+
+.modal {
+    position: relative;
+
+    width: min(100%, 440px);
+
+    padding: 30px;
 
     text-align: center;
+
+    background: white;
+
+    border: 1px solid #d5f5f2;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 18px 55px rgba(0, 0, 0, 0.23);
+
+    animation: subir 0.2s ease-out;
+}
+
+.modal h2 {
+    margin: 13px 0 9px;
+
+    color: #176b87;
+
+    font-size: 22px;
+}
+
+.modal p {
+    color: #638b96;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+}
+
+.modal-icone {
+    display: grid;
+
+    place-items: center;
+
+    width: 48px;
+    height: 48px;
+
+    margin: 0 auto;
+
+    color: #b14c5b;
+
+    background: #fff0f1;
+
+    border: 1px solid #f4c3c9;
+
+    border-radius: 50%;
+
+    font-size: 25px;
+
+    font-weight: 800;
+}
+
+.modal-botoes {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    margin-top: 24px;
+}
+
+
+/* =========================
+   MODAL BOOTSTRAP
+========================= */
+
+.fechar-modal {
+    position: absolute;
+
+    top: 10px;
+    right: 13px;
+
+    padding: 4px 9px;
+
+    color: #638b96;
+
+    background: transparent;
+
+    font-size: 26px;
+}
+
+.bootstrap-icone {
+    color: #176b87;
+
+    background: #e6f8f6;
+
+    border-color: #b8e8e4;
+
+    font-size: 23px;
+}
+
+.bootstrap-lista {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 9px;
+
+    margin: 19px 0;
+
+    text-align: left;
+}
+
+.bootstrap-lista div {
+    padding: 12px;
+
+    background: #f0fbf9;
+
+    border: 1px solid #d7efec;
+
+    border-radius: 10px;
+}
+
+.bootstrap-lista strong,
+.bootstrap-lista span {
+    display: block;
+}
+
+.bootstrap-lista strong {
+    margin-bottom: 4px;
+
+    color: #176b87;
+
+    font-size: 13px;
+}
+
+.bootstrap-lista span {
+    color: #638b96;
+
+    font-size: 12px;
+
+    line-height: 1.4;
+}
+
+.nota-bootstrap {
+    padding: 11px;
+
+    background: #f7fbfb;
+
+    border-radius: 9px;
+
+    font-size: 12px !important;
+}
+
+
+/* =========================
+   ACESSIBILIDADE
+========================= */
+
+.visualmente-oculto {
+    position: absolute;
+
+    width: 1px;
+    height: 1px;
+
+    padding: 0;
+    margin: -1px;
+
+    overflow: hidden;
+
+    clip: rect(0, 0, 0, 0);
+
+    white-space: nowrap;
+
+    border: 0;
+}
+
+
+/* =========================
+   ANIMAÇÕES
+========================= */
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes subir {
+    from {
+        opacity: 0;
+        transform: translateY(10px) scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+
+/* =========================
+   RESPONSIVIDADE
+========================= */
+
+@media (max-width: 760px) {
+
+    .container {
+        padding: 21px;
+    }
+
+    .topo {
+        align-items: flex-start;
+    }
+
+    .moldura-mar {
+        width: 85px;
+        height: 85px;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .campo-nome-container {
+        grid-column: 1 / -1;
+    }
+
+}
+
+
+@media (max-width: 540px) {
+
+    body {
+        padding: 10px;
+    }
+
+    .container {
+        margin: 5px auto;
+
+        padding: 17px;
+
+        border-radius: 17px;
+    }
+
+    .topo {
+        flex-direction: column-reverse;
+
+        align-items: center;
+
+        text-align: center;
+    }
+
+    .fotos-lado-a-lado {
+        justify-content: center;
+    }
+
+    .moldura-mar {
+        width: 92px;
+        height: 92px;
+    }
+
+    .barra-acoes,
+    .cabecalho-tabela,
+    .resumo-container,
+    .rodape {
+        flex-direction: column;
+
+        align-items: stretch;
+    }
+
+    .btn-bootstrap {
+        width: 100%;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .campo-nome-container {
+        grid-column: auto;
+    }
+
+    .form-botoes {
+        flex-direction: column;
+    }
+
+    .form-botoes button,
+    .resumo-container button {
+        width: 100%;
+    }
+
+    .busca-container {
+        width: 100%;
+    }
+
+    .cartao {
+        padding: 18px 14px;
+    }
+
+    .modal {
+        padding: 25px 19px;
+    }
+
+    .bootstrap-lista {
+        grid-template-columns: 1fr;
+    }
+
 }
